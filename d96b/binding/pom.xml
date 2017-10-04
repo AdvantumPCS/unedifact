@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.milyn.edi</groupId>
         <artifactId>unedifact-gen-parent</artifactId>
-	<version>1.6</version> <!-- base pom version - do not remove this comment -->
+	<version>1.7.0</version> <!-- base pom version - do not remove this comment -->
         <relativePath>../../parent/pom.xml</relativePath>
     </parent>
     <name>Smooks EDI - UN/EDIFACT - D96B - Bindings</name>
@@ -25,7 +25,7 @@
             <plugin>
                 <groupId>org.milyn</groupId>
                 <artifactId>maven-ejc-plugin</artifactId>
-                <version>${project.version}</version>
+                <version>1.6</version>
                 <configuration>
                     <ediMappingFile>urn:org.milyn.edi.unedifact:d96b-mapping:${project.version}</ediMappingFile>
                 </configuration>
