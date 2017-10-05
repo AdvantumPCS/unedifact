@@ -14,14 +14,19 @@
     <packaging>pom</packaging>
     <version>1.7.0</version> <!-- base pom version - do not remove this comment -->
     <name>Milyn Smooks EDI Generation Parent</name>
+    
+    <properties>
+        <maven-ect-plugin.version>1.6</maven-ect-plugin.version>
+        <maven-ejc-plugin.version>1.6</maven-ejc-plugin.version>
+    </properties>
 
     <dependencies>
         <dependency>
-			<groupId>org.milyn</groupId>
-			<artifactId>milyn-smooks-edi</artifactId>
-			<version>${project.version}</version>
+            <groupId>org.milyn</groupId>
+            <artifactId>milyn-smooks-edi</artifactId>
+            <version>${project.version}</version>
             <scope>provided</scope>
-		</dependency>
+        </dependency>
         <dependency>
             <groupId>org.milyn</groupId>
             <artifactId>milyn-smooks-ect</artifactId>
@@ -56,7 +61,7 @@
     </dependencies>
     
     <build>
-    	<finalName>${project.groupId}.${project.artifactId}_${smooks.osgi.version}</finalName>
+        <finalName>${project.groupId}.${project.artifactId}_${smooks.osgi.version}</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -95,7 +100,7 @@
                             <replacement>.SNAPSHOT</replacement>
                             <failIfNoMatch>false</failIfNoMatch>
                         </configuration>
-                        </execution>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>   
@@ -114,7 +119,7 @@
                 </executions>
                 <configuration>
                     <instructions>
-                    	<Bundle-SymbolicName>$(maven-symbolicname);singleton:=true</Bundle-SymbolicName>
+                        <Bundle-SymbolicName>$(maven-symbolicname);singleton:=true</Bundle-SymbolicName>
                         <Fragment-Host>org.milyn.smooks.osgi;bundle-version=${smooks.osgi.version}</Fragment-Host>
                     </instructions>
                 </configuration>

@@ -5,25 +5,29 @@
     <parent>
         <groupId>org.milyn.edi</groupId>
         <artifactId>unedifact-gen-parent</artifactId>
-		<version>1.7.0</version> <!-- base pom version - do not remove this comment -->
+        <version>1.7.0</version> <!-- base pom version - do not remove this comment -->
         <relativePath>../../parent/pom.xml</relativePath>
     </parent>
     <groupId>org.milyn.edi.unedifact</groupId>
     <artifactId>d96b-mapping-maersk</artifactId>
-    <name>Smooks EDI - UN/EDIFACT - D96B - Mapping Model</name>
+    <name>Smooks EDI - UN/EDIFACT - D96B - Mapping Model - Maersk</name>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.milyn</groupId>
                 <artifactId>maven-ect-plugin</artifactId>
-		        <version>1.6</version> <!-- base pom version - do not remove this comment -->
+                <version>${maven-ejc-plugin.version}</version> <!-- base pom version - do not remove this comment -->
                 <configuration>
                     <src>d96b-maersk.zip</src>
                     <srcType>UNEDIFACT</srcType>
                 </configuration>
                 <executions>
-                    <execution><goals><goal>generate</goal></goals></execution>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
