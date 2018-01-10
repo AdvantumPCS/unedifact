@@ -2,13 +2,14 @@
 
 if [ "$#" -lt 3 ] 
 then
-	echo 'Usage: $0 --release=d96b --path=d96b-maersk --smooks-version=1.7.0 [--suffix=maersk]' && exit 1
+	echo "Usage: ${0} --release=d96b --path=d96b-maersk --smooks-version=1.7.0 [--suffix=maersk] [--skip-build=false]" && exit 1
 fi
 
 SUFFIX=""
 REPO_ID="internal"
-REPO_URL="http://52.179.158.171:8081/repository/internal/"
+REPO_URL="http://maven.advantumpcs.net:8081/repository/internal/"
 GROUP_ID=org.milyn.edi.unedifact
+SKIP_BUILD=false
 
 for i in "$@"
 do
@@ -27,6 +28,10 @@ case $i in
     ;;
     -s=*|--suffix=*)
     SUFFIX="-${i#*=}"
+    shift # past argument=value
+    ;;
+    -b=*|--skip-build=*)
+    SKIP_BUILD="-${i#*=}"
     shift # past argument=value
     ;;
     *)
@@ -48,7 +53,11 @@ fi
 cd ${MODULE_PATH}
 
 # Clean and install mappings and bindings
-mvn clean install
+if [ "${SKIP_BUILD}" = false ] ; then
+	mvn clean install
+else
+	echo "Skipping build"
+fi
 
 if [[ ! -f mapping/target/${GROUP_ID}.${EDIFACT_RELEASE}-mapping${SUFFIX}_${SMOOKS_VERSION}.jar ]]; then
 	echo "File ./${MODULE_PATH}/mapping/target/${GROUP_ID}.${EDIFACT_RELEASE}-mapping${SUFFIX}_${SMOOKS_VERSION}.jar does not exist"
